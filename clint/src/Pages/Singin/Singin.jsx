@@ -196,7 +196,7 @@ export default function SignIn() {
     initialValues: initialValues,
     validationSchema: SinginSchema,
     onSubmit: async(values, action) => {
-      let islogin=await fetch("http://localhost:8000/bachulars/loginuser",{
+      let islogin=await fetch(`${window.location.origin}/bachulars/loginuser`,{
         method:'POST',
         headers: {
           "Content-Type": "application/json"
