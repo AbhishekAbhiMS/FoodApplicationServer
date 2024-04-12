@@ -240,10 +240,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 import { useDispatch, useSelector } from "react-redux";
 import setcart from "../../Redux/Cardprice/ItemCart";
-
+import { useLocation } from "react-router-dom";
 const OurMenu = () => {
-  let [search, setsearch] = useState('')
+  const location=useLocation()
+  let [search, setsearch] = useState(location.state==null?"":location.state.data)
   let [debouncing, setdebouncing] = useState('')
+  
   const [searchload, setsearchload] = useState(false)
   const [alldata, setAlldata] = useState()
   const [load, setload] = useState(true)
@@ -254,7 +256,7 @@ const OurMenu = () => {
   const [details,Setdetils]=useState({})
   // const [ItemPrice,SetItemPrice]=useState(0)
 
-
+// console.log(location,"3456")
 const dispatch=useDispatch() 
 
   const fetchData = () => {
@@ -381,8 +383,9 @@ console.log(i,'numbers');
             <>
               {['Starter', 'Biryani/Rice', 'Pizza', 'Juice'].map((e, i) => {
                 return (<>
-                  <div key={i} style={{ width: '100%', padding: '0px 50px', paddingTop: '30px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }} > <h3>{e}</h3></div>
-                  <Grid container wrap="wrap" padding='0px 50px' marginTop={'20px'} display={'flex'} justifyContent={'flex-start'}>
+                  <div key={i} style={{ width: '100%', padding: '0px 50px',height:'50px', paddingTop: '30px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }} > <h2>{e}</h2></div>
+                  <Divider  style={{margin:'20px 40px',border:'1px solid #c7c6c6'}}></Divider>
+                  <Grid container wrap="wrap" padding='0px 50px' marginTop={'10px'} display={'flex'} justifyContent={'flex-start'}>
                     {fooitems.filter((itm, i) => {
 
                       return ((itm?.CategoryName === e) && (itm?.name?.toLowerCase().includes(debouncing.toLowerCase())))
@@ -393,7 +396,12 @@ console.log(i,'numbers');
                       <>
                         <Card key={index} sx={{ width: 240, maxWidth: '100%', boxShadow: 'lg', margin: '20px', padding: '8px', paddingBottom: '20px' }} >
                           <CardOverflow>          {searchload ? (
-                            <img
+                            <img  onClick={(e) => {
+                              console.log(item.name,"sss");
+                              setimgid({...imgid,  name: item?.name, img: item?.img, details: item?.description, category: item?.CategoryName })
+                              e.stopPropagation();
+                              setcarddetail(true)
+                            }}
                               style={{ width: '100%', height: 150, margin: '8px 0px', borderRadius: '8px' }}
                               alt={item.title}
                               src={item.img}
@@ -405,11 +413,11 @@ console.log(i,'numbers');
                           )}
                                 
                             { searchload ? (
-                              <Box sx={{ pr: 2 }}>
+                              <Box sx={{ pr: 2 ,marginBottom:'22px'}}>
                                 <CardContent>
                                   <Typography level="body-xs">{item.name}</Typography>
 
-
+{/* 
                                   <div  onClick={(e) => {
                                     console.log(item.name,"sss");
                                     setimgid({...imgid,  name: item?.name, img: item?.img, details: item?.description, category: item?.CategoryName })
@@ -417,7 +425,7 @@ console.log(i,'numbers');
                                     setcarddetail(true)
                                   }} id={item.name} ><Link href="#underline" underline="hover">
                                       details <ArrowOutwardIcon />
-                                    </Link></div>
+                                    </Link></div> */}
                                   
                                 
                                     <DropDown tocart={item} list={item.options} name={item.name}></DropDown> 
