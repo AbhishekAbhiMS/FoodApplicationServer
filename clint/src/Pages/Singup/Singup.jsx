@@ -44,7 +44,7 @@ let navigate=useNavigate()
     onSubmit:async(values,action)=>{
        console.log(values,"aaa");
        
-     let responce=await fetch("http://localhost:8000/bachulars/createuser",{
+     let responce=await fetch(`${window.location.origin}/bachulars/createuser`,{
       method:'POST',
       headers: {
         "Content-Type": "application/json"
