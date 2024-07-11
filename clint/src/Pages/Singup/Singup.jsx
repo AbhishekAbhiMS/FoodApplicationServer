@@ -44,7 +44,7 @@ let navigate=useNavigate()
     onSubmit:async(values,action)=>{
        console.log(values,"aaa");
        
-     let responce=await fetch(`${window.location.origin}/bachulars/createuser`,{
+     let responce=await fetch(`https://foodapplicationserver-backend.onrender.com/bachulars/createuser`,{
       method:'POST',
       headers: {
         "Content-Type": "application/json"
