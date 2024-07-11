@@ -74,7 +74,7 @@ const DropDown = (props) => {
     React.useEffect(()=>{
         if(cartapi>0){
             console.log(quantity,"abhi");
-            axios.post(`${window.location.origin}/bachulars/addtocart`, {
+            axios.post(`https://foodapplicationserver-backend.onrender.com/bachulars/addtocart`, {
                     userid: localStorage.getItem("login"), 
                     cartitems:quantity
         
