@@ -27,7 +27,7 @@ const Cart = () => {
     const dispatch = useDispatch()
     const updatecart = () => {
         let initialState;
-        axios.post(`${window.location.origin}/bachulars/getcart`, { "userid": localStorage.getItem("login") })
+        axios.post(`https://foodapplicationserver-backend.onrender.com/bachulars/getcart`, { "userid": localStorage.getItem("login") })
             .then((response) => {
                 initialState = response?.data?.message?.cartitems[0]
                 setcartitems(initialState)
