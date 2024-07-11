@@ -261,7 +261,7 @@ const dispatch=useDispatch()
 
   const fetchData = () => {
     
-    axios.post(`${window.location.origin}/bachulars/fooddata`, {}, {
+    axios.post(`https://foodapplicationserver-backend.onrender.com/bachulars/fooddata`, {}, {
       headers: {
         "Content-Type": "application/json"
       }
@@ -281,7 +281,7 @@ const dispatch=useDispatch()
 
 const updatecart=()=>{
   let initialState;
-  axios.post(`${window.location.origin}/bachulars/getcart`, {"userid":localStorage.getItem("login")})
+  axios.post(`https://foodapplicationserver-backend.onrender.com/bachulars/getcart`, {"userid":localStorage.getItem("login")})
   .then((response) => {
     initialState=response?.data?.message?.cartitems[0]
     console.log(initialState,"get");
